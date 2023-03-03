@@ -5,7 +5,7 @@ namespace Console;
 
 public class ClearScriptConsole
 {
-    public async Task Execute(string message, CancellationToken token)
+    public async Task ExecuteAsync(string message, CancellationToken token)
     {
         try
         {

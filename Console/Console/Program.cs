@@ -9,7 +9,7 @@ static class Program
         if (args.Length > 0)
         {
             var runner = new ClearScriptConsole();
-            await runner.Execute(args[0], CancellationToken.None);
+            await runner.ExecuteAsync(args[0], CancellationToken.None);
         }
         return 0;
     }
