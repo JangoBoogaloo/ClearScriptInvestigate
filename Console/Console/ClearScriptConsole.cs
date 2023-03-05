@@ -9,7 +9,13 @@ public class ClearScriptConsole
     {
         try
         {
-            using var engine = new V8ScriptEngine();
+            var constraints = new V8RuntimeConstraints
+            {
+                MaxArrayBufferAllocation = 20,
+                MaxNewSpaceSize = 20,
+                MaxOldSpaceSize = 20,
+            };
+            using var engine = new V8ScriptEngine(constraints);
             engine.AddHostType("Console", HostItemFlags.GlobalMembers, typeof(System.Console));
             engine.Execute("function allocateMemory() { array = []; for(let i = 0; i <= 1000; i++) { array.push((new Array(999999999)).fill('aaaa')); } }");
             engine.Script.allocateMemory();
