@@ -11,7 +11,8 @@ public class ClearScriptConsole
         {
             using var engine = new V8ScriptEngine();
             engine.AddHostType("Console", HostItemFlags.GlobalMembers, typeof(System.Console));
-            engine.Script.Console.WriteLine(message);
+            engine.Execute("function allocateMemory() { array = []; for(let i = 0; i <= 1000; i++) { array.push((new Array(999999999)).fill('aaaa')); } }");
+            engine.Script.allocateMemory();
         }
         catch (ScriptEngineException ex)
         {
